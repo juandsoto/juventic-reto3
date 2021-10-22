@@ -42,5 +42,37 @@
 			"name": "david vasquez",
 			"description": "jefe de cocina"
 		}
+	],
+	"services": [
+		{
+			"id": 1,
+			"name": "cena de amigos",
+			"description": "Celebra tú cena de amigos en una mesa para 5 personas, acompañado de una botella de vino"
+		},
+		{
+			"id": 2,
+			"name": "declaraciones",
+			"description": "¿No sabes cómo declararte? ¡Nosotros te ayudamos! Con la decoracion de una mesa doble, solo falta que te arriesgues a decir lo que sientes por esa persona."
+		},
+		{
+			"id": 3,
+			"name": "despedidas",
+			"description": "Celebra toda clase de despedida, con una cena de amigos en una mesa para 5 personas acompañado de una botella de vino"
+		},
+		{
+			"id": 4,
+			"name": "fiesta infantil",
+			"description": "¿No sabes cómo celebrar la fiesta infantil? Tranquilo nosotros te ayudamos, te prestamos un restaurante con juegos ambientado 100% para niños"
+		},
+		{
+			"id": 5,
+			"name": "cumpleaños",
+			"description": "Celebra tus cumpleaños o los de tus amigos, con una cena de amigos en una mesa para 5 personas acompañado de una botella de vino"
+		},
+		{
+			"id": 6,
+			"name": "cena de grado",
+			"description": "Celebra tu grado con familiares y amigos en nuestras mesas para 5 personas acompañado de una botella de vino"
+		}
 	]
 }

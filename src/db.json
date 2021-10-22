@@ -1,0 +1,46 @@
+{
+	"clients": [
+		{
+			"id": 1,
+			"name": "luisa villada",
+			"description": "Me encanta el restaurante, la comida y los precios!"
+		},
+		{
+			"id": 2,
+			"name": "valeria cardona",
+			"description": "Me encanta el restaurante, la comida y los precios!"
+		},
+		{
+			"id": 3,
+			"name": "carlos mora",
+			"description": "Mi hijo quedó feliz con sus grados, la mejor comida de todas"
+		},
+		{
+			"id": 4,
+			"name": "tatiana silva",
+			"description": "Me enamoré de las pastas de este restaurante, son los mejores"
+		}
+	],
+	"team": [
+		{
+			"id": 1,
+			"name": "kevin huaza",
+			"description": "jefe de la empresa"
+		},
+		{
+			"id": 2,
+			"name": "valentina pinzon",
+			"description": "marketing digital"
+		},
+		{
+			"id": 3,
+			"name": "juan david soto",
+			"description": "ejecutivo nomina"
+		},
+		{
+			"id": 4,
+			"name": "david vasquez",
+			"description": "jefe de cocina"
+		}
+	]
+}

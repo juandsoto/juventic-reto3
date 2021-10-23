@@ -4135,7 +4135,7 @@ textarea.form-control-lg {
     padding-left: 0.5rem;
   }
   .navbar-expand-sm .navbar-nav-scroll {
-    overflow: visible;
+    overflow: hidden;
   }
   .navbar-expand-sm .navbar-collapse {
     display: flex !important;
@@ -4188,7 +4188,7 @@ textarea.form-control-lg {
     padding-left: 0.5rem;
   }
   .navbar-expand-md .navbar-nav-scroll {
-    overflow: visible;
+    overflow: hidden;
   }
   .navbar-expand-md .navbar-collapse {
     display: flex !important;
@@ -4241,7 +4241,7 @@ textarea.form-control-lg {
     padding-left: 0.5rem;
   }
   .navbar-expand-lg .navbar-nav-scroll {
-    overflow: visible;
+    overflow: hidden;
   }
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
@@ -4294,7 +4294,7 @@ textarea.form-control-lg {
     padding-left: 0.5rem;
   }
   .navbar-expand-xl .navbar-nav-scroll {
-    overflow: visible;
+    overflow: hidden;
   }
   .navbar-expand-xl .navbar-collapse {
     display: flex !important;
@@ -4347,7 +4347,7 @@ textarea.form-control-lg {
     padding-left: 0.5rem;
   }
   .navbar-expand-xxl .navbar-nav-scroll {
-    overflow: visible;
+    overflow: hidden;
   }
   .navbar-expand-xxl .navbar-collapse {
     display: flex !important;
@@ -4399,7 +4399,7 @@ textarea.form-control-lg {
   padding-left: 0.5rem;
 }
 .navbar-expand .navbar-nav-scroll {
-  overflow: visible;
+  overflow: hidden;
 }
 .navbar-expand .navbar-collapse {
   display: flex !important;

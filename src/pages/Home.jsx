@@ -7,7 +7,7 @@ import Clients from '../components/Clients';
 const Home = () => {
 	return (
 		<>
-			<Hero></Hero>
+			<Hero title='¡bienvenidos a nuestro restaurante!'></Hero>
 			<Carrousel></Carrousel>
 			<Clients></Clients>
 		</>

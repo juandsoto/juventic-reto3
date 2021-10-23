@@ -25,22 +25,22 @@
 		{
 			"id": 1,
 			"name": "kevin huaza",
-			"description": "jefe de la empresa"
+			"description": "Jefe de la Empresa"
 		},
 		{
 			"id": 2,
 			"name": "valentina pinzon",
-			"description": "marketing digital"
+			"description": "Marketing Digital"
 		},
 		{
 			"id": 3,
 			"name": "juan david soto",
-			"description": "ejecutivo nomina"
+			"description": "Ejecutivo Nomina"
 		},
 		{
 			"id": 4,
 			"name": "david vasquez",
-			"description": "jefe de cocina"
+			"description": "Jefe de Cocina"
 		}
 	],
 	"services": [
@@ -73,6 +73,32 @@
 			"id": 6,
 			"name": "cena de grado",
 			"description": "Celebra tu grado con familiares y amigos en nuestras mesas para 5 personas acompañado de una botella de vino"
+		}
+	],
+	"menu": [
+		{
+			"id": 1,
+			"name": "Pasta boloñesa",
+			"description": "Pasta con carne en cocción lenta, estofada en salsa napolitana, cocida con pomodoro y finas hierbas.",
+			"price": 25000
+		},
+		{
+			"id": 2,
+			"name": "Canelones Ragu",
+			"description": "Láminas de pasta artesanal rellenas con carne de res en cocción lenta y pomodoro, gratinadas con mozzarella",
+			"price": 25000
+		},
+		{
+			"id": 3,
+			"name": "Pasta con camarones",
+			"description": "En salsa blanca con camarones salteados, tocineta y cebollín acompañado de pan.",
+			"price": 25000
+		},
+		{
+			"id": 4,
+			"name": "Galleta con helado",
+			"description": "Galleta recién salida del horno, con cubos crocantes de chocolate y nuez pecán, acompañada de gelato vainilla.",
+			"price": 25000
 		}
 	]
 }

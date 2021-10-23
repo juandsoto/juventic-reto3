@@ -5,7 +5,6 @@ import { faTwitter, faFacebookF, faWhatsapp } from '@fortawesome/free-brands-svg
 
 
 const Team = ({ children, name, description }) => {
-
 	return (
 		<>
 			<div className="col">

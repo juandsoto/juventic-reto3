@@ -1,9 +1,5 @@
 import React from 'react';
 
-import slide1 from '../assets/img/portfolio/pastaragu.png';
-import slide2 from '../assets/img/portfolio/postres.jpg';
-import slide3 from '../assets/img/portfolio/happy.jpg';
-
 const Carrousel = () => {
 	return (
 		<div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
@@ -14,13 +10,13 @@ const Carrousel = () => {
 			</div>
 			<div className="carousel-inner">
 				<div className="carousel-item active">
-					<img src={slide1} className="d-block w-100" alt="First slide" loading="eager" />
+					<img src='assets/img/portfolio/pastaragu.png' className="d-block w-100" alt="First slide" loading="eager" />
 				</div>
 				<div className="carousel-item">
-					<img src={slide2} className="d-block w-100" alt="Second slide" loading="eager" />
+					<img src='assets/img/portfolio/postres.jpg' className="d-block w-100" alt="Second slide" loading="eager" />
 				</div>
 				<div className="carousel-item">
-					<img src={slide3} className="d-block w-100" alt="Third slide" loading="eager" />
+					<img src='assets/img/portfolio/happy.jpg' className="d-block w-100" alt="Third slide" loading="eager" />
 				</div>
 			</div>
 			<button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

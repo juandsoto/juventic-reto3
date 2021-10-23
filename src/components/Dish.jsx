@@ -1,6 +1,6 @@
 import React from 'react';
-
 const Dish = ({ name, description, price, img }) => {
+
 	return (
 		<>
 			<div className="col-12 col-md-6 col-lg-4">

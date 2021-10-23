@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 
-const Service = ({ children, id, name, description }) => {
+const Service = ({ id, name, description, img }) => {
 	return (
 		<>
 			<div className="col-lg-4 col-sm-6">
@@ -12,7 +12,8 @@ const Service = ({ children, id, name, description }) => {
 						<div className="portfolio-hover">
 							<div className="portfolio-hover-content"><FontAwesomeIcon icon={faPlus} size='3x'></FontAwesomeIcon></div>
 						</div>
-						{children}
+						<img className="img-fluid h-50" src={img} alt="..." />
+
 					</a>
 					<div className="portfolio-caption">
 						<div className="portfolio-caption-heading">{name.toUpperCase()}</div>
@@ -30,7 +31,8 @@ const Service = ({ children, id, name, description }) => {
 								<div className="col-lg-8">
 									<div className="modal-body">
 										<h2>{name.toUpperCase()}</h2>
-										{children}
+										<img className="img-fluid h-50" src={img} alt="..." />
+
 										<p>{description}</p>
 
 										<button className="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">

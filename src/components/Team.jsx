@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebookF, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 
-const Team = ({ children, name, description }) => {
+const Team = ({ name, description, img }) => {
 	return (
 		<>
 			<div className="col">
 				<div className="team-member">
-					{children}
+					<img className="mx-auto rounded-circle" src={img} alt="..." />
 					<h4>{name.toUpperCase()}</h4>
 					<p className="text-muted">{description}</p>
 					<button className="btn btn-dark btn mx-2 social-twitter" ><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></button>

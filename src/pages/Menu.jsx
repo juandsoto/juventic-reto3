@@ -7,12 +7,10 @@ import Dish from '../components/Dish';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFire, faHamburger } from '@fortawesome/free-solid-svg-icons';
 
-import heroImg from '../img/outline_restaurant_menu_white_24dp.png';
-
-import img1 from '../assets/img/portfolio/pastabola.jpg';
 
 const Menu = () => {
 
+	const [loading, setLoading] = useState(true);
 	const [dishes, setDishes] = useState([]);
 
 	const fetchMenu = async () => {
@@ -23,6 +21,8 @@ const Menu = () => {
 
 	useEffect(() => {
 		fetchMenu();
+		setLoading(false);
+		window.scrollTo({ top: true });
 	}, []);
 
 	return (
@@ -51,17 +51,20 @@ const Menu = () => {
 				</div>
 			</div>
 
-			<div style={{ background: '#1d2124' }}>
-				<a href="assets/MenuPaneyPastaColombiani.pdf" id='carta' download="MenuPaneyPastaColombianim," className="text-light btn mb-4" style={{ textAlign: 'center' }}>
-					DESCARGAR MENÚ
-
-				</a>
+			<div style={{ background: '#1d2124', textAlign: 'center' }}>
+				<div className="mb-4">
+					<h2 className='text-light'>Menú</h2>
+					<a href="assets/MenuPaneyPastaColombiani.pdf" id='carta' download="MenuPaneyPastaColombianim," className="text-black btn btn-primary">
+						Descarga nuestro menú
+					</a>
+				</div>
 
 				<div className="container" >
 					<div className="row">
-						{dishes.map(dish => {
-							return <Dish key={dish.id} {...dish} img={img1}></Dish>;
-						})}
+						{loading ? <h1>Loading ...</h1> :
+							dishes.map(dish => {
+								return <Dish key={dish.id} {...dish} ></Dish>;
+							})}
 					</div>
 				</div>
 			</div>

@@ -11401,7 +11401,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color:#000;
-  background-image: url("../assets/img/logos/fondo-de-pantalla-bandera-de-italia.jpg");
+  background-image: url("../img/logos/fondo-de-pantalla-bandera-de-italia.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -11711,7 +11711,7 @@ header.masthead .masthead-heading {
 
 section#contact {
   background-color: #212529;
-  background-image: url("../assets/img/map-image.png");
+  background-image: url("../img/map-image.png");
   background-repeat: no-repeat;
   background-position: center;
 }

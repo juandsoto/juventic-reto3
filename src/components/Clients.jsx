@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-import img1 from '../assets/img/portfolio/mujer1.jfif';
-import img2 from '../assets/img/portfolio/mujer2.jfif';
-import img3 from '../assets/img/portfolio/hombre3.jfif';
-import img4 from '../assets/img/portfolio/mujer4.jfif';
-
 import Client from './Client';
 
 const Clients = () => {
 
+	const [loading, setLoading] = useState(true);
 	const [clients, setClients] = useState([]);
 
 	const fetchClients = async () => {
 		const res = await fetch('http://localhost:4000/clients');
 		const clients = await res.json();
 		setClients(clients);
+		setLoading(false);
 	};
 
 	useEffect(() => {
 		fetchClients();
 	}, []);
-
-	const images = [img1, img2, img3, img4];
 
 	return (
 		<>
@@ -31,9 +26,8 @@ const Clients = () => {
 					<h4 className="section-subheading text-muted mb-5">PANE E PASTA COLOMBIANI</h4>
 				</div>
 				<div className="row">
-					{clients.map((client, index) => {
+					{loading ? <h1>Loading...</h1> : clients.map((client, index) => {
 						return <Client key={client.id} {...client}>
-							<img className="mx-auto rounded-circle" src={images[index]} alt="..." />
 						</Client>;
 					})}
 				</div>

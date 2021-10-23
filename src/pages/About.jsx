@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import img1 from '../assets/img/imagen 1.jfif';
-import img2 from '../assets/img/imagen 4.jfif';
-import img3 from '../assets/img/imagen 2.jfif';
-import img4 from '../assets/img/imagen 3.jfif';
-
-import img5 from '../assets/img/fotoKevin.jfif';
-import img6 from '../assets/img/fotoValen.jpg';
-import img7 from '../assets/img/juan.jpeg';
-import img8 from '../assets/img/fotoDavid.jfif';
-
 import Team from '../components/Team';
 import Map from '../components/Map';
 
@@ -25,9 +15,9 @@ const About = () => {
 
 	useEffect(() => {
 		fetchTeam();
+		window.scrollTo({ top: true });
 	}, []);
 
-	const images = [img5, img6, img7, img8];
 
 	return (
 		<>
@@ -39,7 +29,7 @@ const About = () => {
 					</div>
 					<ul className="timeline">
 						<li>
-							<div className="timeline-image"><img className="rounded-circle img-fluid" src={img1} alt="..." /></div>
+							<div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/imagen 1.jfif" alt="..." /></div>
 							<div className="timeline-panel">
 								<div className="timeline-heading">
 									<h4>2019-2021</h4>
@@ -49,7 +39,7 @@ const About = () => {
 							</div>
 						</li>
 						<li className="timeline-inverted">
-							<div className="timeline-image"><img className="rounded-circle img-fluid" src={img2} alt="..." /></div>
+							<div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/imagen 4.jfif" alt="..." /></div>
 							<div className="timeline-panel">
 								<div className="timeline-heading">
 									<h4>2019</h4>
@@ -59,7 +49,7 @@ const About = () => {
 							</div>
 						</li>
 						<li>
-							<div className="timeline-image"><img className="rounded-circle img-fluid" src={img3} alt="..." /></div>
+							<div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/imagen 2.jfif" alt="..." /></div>
 							<div className="timeline-panel">
 								<div className="timeline-heading">
 									<h4>2020</h4>
@@ -71,7 +61,7 @@ const About = () => {
 							</div>
 						</li>
 						<li className="timeline-inverted">
-							<div className="timeline-image"><img className="rounded-circle img-fluid" src={img4} alt="..." /></div>
+							<div className="timeline-image"><img className="rounded-circle img-fluid" src="assets/img/imagen 3.jfif" alt="..." /></div>
 							<div className="timeline-panel">
 								<div className="timeline-heading">
 									<h4>2021</h4>
@@ -104,7 +94,7 @@ const About = () => {
 					<div className="row">
 						{team.map((person, index) => {
 							return <Team key={person.id} {...person} >
-								<img className="mx-auto rounded-circle" src={images[index]} alt="..." />
+
 							</Team>;
 						})}
 					</div>

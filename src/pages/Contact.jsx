@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Contact = () => {
+
+	useEffect(() => {
+		window.scrollTo({ top: true });
+	}, []);
 	return (
 		<>
 			<section className='page-section bajarsection' id='contact'>

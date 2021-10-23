@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Service from '../components/Service';
 
-import img1 from '../assets/img/portfolio/imagen10.jfif';
-import img2 from '../assets/img/portfolio/imagen12.jfif';
-import img3 from '../assets/img/portfolio/imagen11.jfif';
-import img4 from '../assets/img/portfolio/imagen8.jfif';
-import img5 from '../assets/img/portfolio/imagen6.jfif';
-import img6 from '../assets/img/portfolio/imagen5.jfif';
-
 const Services = () => {
 
+	const [loading, setLoading] = useState(true);
 	const [services, setServices] = useState([]);
 
 	const fetchServices = async () => {
@@ -20,9 +14,9 @@ const Services = () => {
 
 	useEffect(() => {
 		fetchServices();
+		setLoading(false);
+		window.scrollTo({ top: true });
 	}, []);
-
-	const images = [img1, img2, img3, img4, img5, img6];
 
 	return (
 		<>
@@ -33,9 +27,9 @@ const Services = () => {
 						<h3 className="section-subheading text-muted">¡Todo para tus celebraciones! </h3>
 					</div>
 					<div className="row">
-						{services.map((service, index) => <Service key={service.id} {...service}>
-							<img className="img-fluid h-50" src={images[index]} alt="..." />
-						</Service>)}
+						{loading ? <h1>Loading...</h1> :
+							services.map((service) => <Service key={service.id} {...service}>
+							</Service>)}
 					</div>
 				</div>
 			</section>

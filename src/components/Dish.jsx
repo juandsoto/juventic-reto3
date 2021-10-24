@@ -1,5 +1,10 @@
 import React from 'react';
-const Dish = ({ name, description, price, img }) => {
+import { useCartContext } from '../contexts/cartContext';
+const Dish = ({ dish }) => {
+
+	const { name, description, price, img } = dish;
+
+	const { addToCart } = useCartContext();
 
 	return (
 		<>
@@ -10,7 +15,7 @@ const Dish = ({ name, description, price, img }) => {
 						<h5 className="card-title">{name}</h5>
 						<p className="card-text">{description}</p>
 						<h5>${price}</h5>
-						<button className="btn btn-primary w-100 text-black">Agregar al carrito</button>
+						<button onClick={() => addToCart(dish)} className="btn btn-primary w-100 text-black">Agregar al carrito</button>
 					</div>
 				</div>
 			</div>

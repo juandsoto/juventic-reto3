@@ -48,22 +48,22 @@ const Contact = () => {
 											placeholder='Email'
 											style={{ padding: '10px', width: '100%' }}
 											required
-											minlength="10"
-											maxlength="125"
+											minLength="10"
+											maxLength="125"
 										/>
 									</div>
-									<div class="form-group">
+									<div className="form-group">
 										<input
 											name="Telefono"
 											type="tel"
-											class="form-control"
+											className="form-control"
 											id="floatingInput"
 											placeholder="Telefono"
 											required
 											pattern="[0-9]{7,10}"
 										/>
 									</div>
-									<div class="form-group">
+									<div className="form-group">
 										<select
 											className='form-select'
 											aria-label='Default select example'
@@ -84,11 +84,11 @@ const Contact = () => {
 											<option value='Fiesta de grados'>Fiesta de grados</option>
 										</select>
 									</div>
-									<div class="form-group">
+									<div className="form-group">
 										<input
 											name="asistentes"
 											type="text"
-											class="form-control"
+											className="form-control"
 											id="floatingInput"
 											required
 											pattern="[0-9]*"
@@ -96,11 +96,11 @@ const Contact = () => {
 										/>
 									</div>
 
-									<div class="form-group">
+									<div className="form-group">
 										<input
 											name="fecha"
 											type="datetime-local"
-											class="form-control"
+											className="form-control"
 											id="floatingInput"
 											required
 											placeholder="Fecha y hora"
@@ -112,22 +112,22 @@ const Contact = () => {
 											type='text'
 											name='Observaciones'
 											placeholder='Observaciones'
-											minlength='0'
-											maxlength='250'
+											minLength='0'
+											maxLength='250'
 											style={{ padding: '10px', width: '100%' }}
 										></textarea>
 									</div>
-									<div class='form-check'>
+									<div className='form-check'>
 										<input
-											class='form-check-input'
+											className='form-check-input'
 											type='checkbox'
 											value=''
 											id='flexCheckDefault'
 											required
 										/>
 										<label
-											class='text-light form-check-label'
-											for='flexCheckDefault'
+											className='text-light form-check-label'
+											htmlFor='flexCheckDefault'
 										>
 											Al hacer clic en "Enviar", aceptas nuestras Condiciones,
 											la Política de datos y la Política de cookies.Es posible

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import Dish from '../components/Dish';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFire, faHamburger } from '@fortawesome/free-solid-svg-icons';
 
@@ -63,12 +62,11 @@ const Menu = () => {
 					<div className="row">
 						{loading ? <h1>Loading ...</h1> :
 							dishes.map(dish => {
-								return <Dish key={dish.id} {...dish} ></Dish>;
+								return <Dish key={dish.id} dish={dish} ></Dish>;
 							})}
 					</div>
 				</div>
-			</div>
-		</>
+			</div>		</>
 	);
 };
 

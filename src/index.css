@@ -142,3 +142,55 @@
 	background-color:none;
 
 }
+
+.cart {
+   position: fixed;
+	background-color: #1d2124;
+	color: white;
+	text-align: center;
+	max-width: auto;
+	top: 25vh;
+	left: 5vw;
+	right: 5vw;
+  	max-height: 50vh;
+	border: white solid 2px;
+	border-radius: 20px;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+	z-index: 999;
+}
+
+.cart::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.cart::-webkit-scrollbar:vertical {
+    width:1px;
+}
+
+.cart::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.cart::-webkit-scrollbar-thumb {
+    background-color: #1e2330;
+    border-radius: 20px;
+    border: 2px solid rgba(145, 145, 145, 0.26);
+}
+
+.cart::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+@media screen and (max-width: 500px) {
+	/* .navbar-brand {
+		font-size: 0.75rem;
+	} */
+}
+
+.offcanvas-body {
+	font-size: 1.5rem;
+	font-style: italic;
+	color: #000;
+	font-weight: 900;
+}

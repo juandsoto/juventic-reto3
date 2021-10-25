@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import Client from './Client';
 
+import URL from '../server';
+
 const Clients = () => {
 
 	const [loading, setLoading] = useState(true);
 	const [clients, setClients] = useState([]);
 
 	const fetchClients = async () => {
-		const res = await fetch('http://localhost:4000/clients');
+		const res = await fetch(`${URL}/clients`);
 		const clients = await res.json();
 		setClients(clients);
 		setLoading(false);

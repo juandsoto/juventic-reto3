@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Service from '../components/Service';
 
+import URL from '../server';
+
 const Services = () => {
 
 	const [loading, setLoading] = useState(true);
 	const [services, setServices] = useState([]);
 
 	const fetchServices = async () => {
-		const res = await fetch('http://localhost:4000/services');
+		const res = await fetch(`${URL}/services`);
 		const services = await res.json();
 		setServices(services);
 	};

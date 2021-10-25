@@ -6,6 +6,7 @@ import Dish from '../components/Dish';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFire, faHamburger } from '@fortawesome/free-solid-svg-icons';
 
+import URL from '../server';
 
 const Menu = () => {
 
@@ -13,7 +14,7 @@ const Menu = () => {
 	const [dishes, setDishes] = useState([]);
 
 	const fetchMenu = async () => {
-		const res = await fetch('http://localhost:4000/menu');
+		const res = await fetch(`${URL}/menu`);
 		const menu = await res.json();
 		setDishes(menu);
 	};

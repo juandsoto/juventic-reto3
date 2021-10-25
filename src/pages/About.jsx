@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import Team from '../components/Team';
 import Map from '../components/Map';
 
+import URL from '../server';
+
 const About = () => {
 
 	const [team, setTeam] = useState([]);
 
 	const fetchTeam = async () => {
-		const res = await fetch('http://localhost:4000/team');
+		const res = await fetch(`${URL}/team`);
 		const team = await res.json();
 		setTeam(team);
 	};

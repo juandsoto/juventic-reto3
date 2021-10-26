@@ -31,21 +31,18 @@ const Menu = () => {
 
 			<div className='py-4' style={{ background: '#b95a00' }}>
 				<div className="container">
-					<div className="d-flex flex-wrap justify-content-around text-center text-light">
-						<div className="">
+					<div className="d-flex flex-column flex-lg-row justify-content-around text-center text-light">
+						<div>
 							<FontAwesomeIcon icon={faUtensils} color='black' size='2x'></FontAwesomeIcon>
-							<p>¡Explora los nuevos platillos de nuestro restaurante!<br />
-								más de 100 platillos diferentes</p>
+							<p>¡Explora los nuevos platillos de nuestro restaurante! más de 100 platillos diferentes</p>
 						</div>
-						<div className="">
+						<div>
 							<FontAwesomeIcon icon={faFire} color='black' size='2x'></FontAwesomeIcon>
-							<p>Chefs expertos<br />
-								Prueba las nuevas combinaciones</p>
+							<p>Chefs expertos Prueba las nuevas combinaciones</p>
 						</div>
-						<div className="">
+						<div>
 							<FontAwesomeIcon icon={faHamburger} color='black' size='2x'></FontAwesomeIcon>
-							<p>Bebidas ilimitadas<br />
-								¡Ven y disfruta de tú bebida favorita en cualquier momento!</p>
+							<p>Bebidas ilimitadas ¡Ven y disfruta de tú bebida favorita en cualquier momento!</p>
 						</div>
 					</div>
 				</div>

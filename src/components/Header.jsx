@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import Cart from '../components/Cart';
+import Login from '../components/Login';
+
 import { useCartContext } from '../contexts/cartContext';
 
 const Header = () => {
+
 	const [toggleCart, setToggleCart] = useState(false);
+	const [toggleLogin, setToggleLogin] = useState(false);
 
 	const { quantity } = useCartContext();
 
@@ -77,6 +81,11 @@ const Header = () => {
 										<p className='stroke text-light'>Contáctanos</p>
 									</Link>
 								</li>
+								<li className='nav-item' data-bs-dismiss='offcanvas'>
+									<button type="button" className="btn btn-primary" onClick={() => setToggleLogin(!toggleLogin)}>
+										Login
+									</button>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -94,6 +103,7 @@ const Header = () => {
 				</div>
 			</nav>
 			{toggleCart && <Cart></Cart>}
+			{toggleLogin && <Login> </Login>}
 		</>
 	);
 };

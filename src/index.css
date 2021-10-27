@@ -159,6 +159,19 @@
   	overflow-x: hidden;
 	z-index: 999;
 }
+.login {
+   position: fixed;
+	background-color: #fff;
+	text-align: center;
+	max-width: auto;
+	top: 25vh;
+	left: 30vw;
+	right: 30vw;
+  	max-height: 50vh;
+	border: white solid 2px;
+	border-radius: 20px;
+	z-index: 999;
+}
 
 .cart::-webkit-scrollbar {
     -webkit-appearance: none;

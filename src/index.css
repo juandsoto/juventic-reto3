@@ -159,19 +159,83 @@
   	overflow-x: hidden;
 	z-index: 999;
 }
+
 .login {
-   position: fixed;
-	background-color: #fff;
+	position: fixed;
+	background-color: rgb(0, 0, 0);
 	text-align: center;
 	max-width: auto;
 	top: 25vh;
-	left: 30vw;
-	right: 30vw;
-  	max-height: 50vh;
-	border: white solid 2px;
+	left: 20vw;
+	right:20vw;
+	max-height: 50vh;
+	border: rgb(255, 187, 0) solid 3px;
 	border-radius: 20px;
 	z-index: 999;
 }
+
+.form-login{
+
+	display: flex;
+	flex-direction: column;
+	margin: 0 1vh 0 1vh;
+	gap: .8rem;
+}
+
+@media(min-width: 800px) {
+	
+	.login {
+		position: fixed;
+		background-color: rgb(0, 0, 0);
+		text-align: center;
+		max-width: auto;
+		top: 25vh;
+		left: 35vw;
+		right:35vw;
+		max-height: 50vh;
+		border: rgb(255, 187, 0) solid 3px;
+		border-radius: 20px;
+		z-index: 999;
+	}
+
+	.form-login{
+
+		display: flex;
+		flex-direction: column;
+		margin: 0 3vh 0 3vh;
+		gap: .8rem;
+	}
+ 
+}
+
+@media(min-width: 1000px) {
+	
+	.login {
+		position: fixed;
+		background-color: rgb(0, 0, 0);
+		text-align: center;
+		max-width: auto;
+		top: 25vh;
+		left: 35vw;
+		right:35vw;
+		max-height: 50vh;
+		border: rgb(255, 187, 0) solid 3px;
+		border-radius: 20px;
+		z-index: 999;
+	}
+
+	
+	.form-login{
+
+		display: flex;
+		flex-direction: column;
+		margin: 0 6vh 0 6vh;
+		gap: .8rem;
+	}
+
+ 
+}
+
 
 .cart::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -209,4 +273,23 @@
 
 .dish-img {
 	height: 300px;
+}
+
+.login{
+	padding-bottom: 25vh;
+}
+.form-login-input{
+	border-radius: 25px
+}
+
+.btn-login{
+	margin-top:1rem;
+	border-radius: 5px;
+	margin-bottom: 2vh;
+	background-color: rgb(255, 187, 0);
+	border: rgb(14, 10, 0) solid 3px;
+
+}
+.login-json{
+	overflow:hidden;
 }

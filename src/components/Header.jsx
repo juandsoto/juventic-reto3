@@ -81,13 +81,13 @@ const Header = () => {
 										<p className='stroke text-light'>Contáctanos</p>
 									</Link>
 								</li>
-								<li className='nav-item' data-bs-dismiss='offcanvas'>
-									<button type="button" className="btn btn-primary" onClick={() => setToggleLogin(!toggleLogin)}>
-										Login
-									</button>
-								</li>
 							</ul>
 						</div>
+					</div>
+					<div className='nav-item ml-5'>
+						<button type="button" className="btn btn-primary" onClick={() => setToggleLogin(!toggleLogin)}>
+							Login
+						</button>
 					</div>
 					<button
 						className='d-flex mx-2 btn btn-outline-warning align-items-center'

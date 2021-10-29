@@ -32,27 +32,33 @@ const Login = () => {
 	};
 
 	return (
-		<div className='login' >
+		<div className='login p-2 text-light' >
 			<h1>Login</h1>
 
 			<form autoComplete='off'>
-				<input
-					type="text"
-					value={form.name}
-					name='name'
-					required
-					onChange={onInputChange} />
-				<input
-					type="password"
-					value={form.password}
-					name='password'
-					required
-					onChange={onInputChange} />
+				<div className='form-login'>
+					<input
+						className='form-login-input'
+						type="text"
+						value={form.name}
+						name='name'
+						required
+						onChange={onInputChange}
+						placeholder="    Usuario" />
+					<input
+						className='form-login-input'
+						type="password"
+						value={form.password}
+						name='password'
+						required
+						onChange={onInputChange} 
+						placeholder="    Contraseña"/>
+				</div>
+				
 			</form>
 
-			<button type="button" onClick={handleSubmit}>Ingresar</button>
+			<button className="btn-login" type="button" onClick={handleSubmit}>Ingresar</button>
 
-			<pre>{JSON.stringify(form)}</pre>
 		</div >
 	);
 };

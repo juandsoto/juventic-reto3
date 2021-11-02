@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router';
 import { useLoginContext } from '../contexts/loginContext';
 
-const Login = () => {
+const Login = ({ isOpen }) => {
 
-	const { isAdmin, setIsAdmin } = useLoginContext();
+	const { setIsAdmin } = useLoginContext();
 
 	const ADMIN = {
 		adminName: 'admin',
@@ -16,7 +15,7 @@ const Login = () => {
 		password: ''
 	});
 
-	const onInputChange = (e) => {
+	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setForm({ ...form, [name]: value });
 	};
@@ -29,45 +28,43 @@ const Login = () => {
 
 		if (name === adminName && password === adminPassword) {
 			setIsAdmin(true);
+			isOpen(false);
 		} else {
 			alert('No eres administrador!!!');
 		}
 
 	};
 
-	if (isAdmin) {
-		return <Redirect to='/' />;
-	}
-
 	return (
-		<div className='login p-2 text-light' >
-			<h1>Login</h1>
-
-			<form autoComplete='off'>
-				<div className='form-login'>
+		<>
+			<form className='w-100' autoComplete='off' onSubmit={handleSubmit}>
+				<div className="form-floating">
 					<input
-						className='form-login-input'
+						className='form-control'
 						type="text"
 						value={form.name}
 						name='name'
+						autoFocus
 						required
-						onChange={onInputChange}
-						placeholder="   Usuario" />
+						onChange={handleChange} />
+					<label htmlFor="floatingInputValue">Nombre</label>
+				</div>
+				<div className="form-floating">
 					<input
-						className='form-login-input'
+						className='form-control'
 						type="password"
 						value={form.password}
 						name='password'
 						required
-						onChange={onInputChange}
-						placeholder="   Contraseña" />
+						onChange={handleChange} />
+					<label htmlFor="floatingInputValue">Contraseña</label>
 				</div>
 
+				<div className='modal-submitbtn'>
+					<button type="submit" className='btn btn-primary text-black'>Ingresar</button>
+				</div>
 			</form>
-
-			<button className="btn-login" type="button" onClick={handleSubmit}>Ingresar</button>
-
-		</div >
+		</>
 	);
 };
 

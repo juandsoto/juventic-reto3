@@ -1,28 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebookF, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { useLoginContext } from '../contexts/loginContext';
 
+import Modal from './Modal';
+import Form from './Form';
 
-const Team = ({ name, description, img }) => {
+import axios from 'axios';
+
+import URL from '../server';
+
+const Team = ({ person }) => {
 
 	const { isAdmin } = useLoginContext();
+	const [isEditing, setIsEditing] = useState(false);
+	const [state, setState] = useState(person);
+
+	const updatePerson = (person) => {
+		axios.patch(`${URL}/team/${person.id}`, person)
+			.then(({ data }) => setState(data))
+			.catch(console.log);
+	};
 
 	return (
 		<>
 			<div className="col">
 				<div className="team-member">
-					<img className="mx-auto rounded-circle" src={img} alt="..." />
-					<h4>{name.toUpperCase()}</h4>
-					<p className="text-muted">{description}</p>
+					<img className="mx-auto rounded-circle" src={state.img} alt="..." />
+					<h4>{state.name.toUpperCase()}</h4>
+					<p className="text-muted">{state.description}</p>
 					<button className="btn btn-dark btn mx-2 social-twitter" ><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></button>
 					<button className="btn btn-dark btn mx-2 social-facebook" ><FontAwesomeIcon icon={faFacebookF}></FontAwesomeIcon></button>
 					<button className="btn btn-dark btn mx-2 social-whatsapp" ><FontAwesomeIcon icon={faWhatsapp}></FontAwesomeIcon></button>
-					{isAdmin && <button className="mt-2 mx-auto w-100 d-block btn btn-secondary">editar</button>}
+					{isAdmin && <button className="mt-2 mx-auto w-100 d-block btn btn-secondary" onClick={() => setIsEditing(!isEditing)}>editar</button>}
 
 				</div>
 			</div>
+			{isEditing &&
+				<Modal isOpen={setIsEditing} title={`editando a ${state.name}`}>
+					<div className="modal-content">
+						<Form payload={state} action={updatePerson} isOpen={setIsEditing}></Form>
+					</div>
+				</Modal>}
 		</>
 	);
 };

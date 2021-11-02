@@ -95,7 +95,7 @@ const About = () => {
 					</div>
 					<div className="row">
 						{team.map((person) => {
-							return <Team key={person.id} {...person} >
+							return <Team key={person.id} person={person} >
 
 							</Team>;
 						})}

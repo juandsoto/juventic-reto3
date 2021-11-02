@@ -4,20 +4,18 @@ import axios from 'axios';
 import URL from '../server';
 
 import { useLoginContext } from '../contexts/loginContext';
-import EditModal from './EditModal';
+
+import Form from './Form';
+import Modal from './Modal';
 
 const Client = ({ client }) => {
 	const { isAdmin } = useLoginContext();
-
 	const [isEditing, setIsEditing] = useState(false);
-
-	const { name, description, img } = client;
-
+	const [state, setState] = useState(client);
 
 	const updateClient = (client) => {
-		const newClient = { ...client, name: 'pepito' };
-		axios.patch(`${URL}/clients/${client.id}`, newClient)
-			.then(console.log)
+		axios.patch(`${URL}/clients/${client.id}`, client)
+			.then(({ data }) => setState(data))
 			.catch(console.log);
 	};
 
@@ -25,14 +23,18 @@ const Client = ({ client }) => {
 		<>
 			<div className="col">
 				<div className="team-member">
-					<img className="mx-auto rounded-circle" src={img} alt="..." />
-					<h4>{name.toUpperCase()}</h4>
-					<p className="text-muted">{description}</p>
+					<img className="mx-auto rounded-circle" src={state.img} alt={state.name} />
+					<h4>{state.name.toUpperCase()}</h4>
+					<p className="text-muted">{state.description}</p>
 					{isAdmin && <button className="w-100 btn btn-secondary" onClick={() => setIsEditing(!isEditing)}>editar</button>}
 				</div>
 			</div>
-			{isEditing && <EditModal payload={client} />}
-
+			{isEditing &&
+				<Modal isOpen={setIsEditing} title={`editando a ${state.name}`}>
+					<div className="modal-content">
+						<Form payload={state} action={updateClient} isOpen={setIsEditing}></Form>
+					</div>
+				</Modal>}
 		</>
 	);
 };

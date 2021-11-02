@@ -5,6 +5,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import Cart from '../components/Cart';
 import Login from '../components/Login';
+import Modal from './Modal';
 
 import { useCartContext } from '../contexts/cartContext';
 import { useLoginContext } from '../contexts/loginContext';
@@ -22,7 +23,7 @@ const Header = () => {
 			<nav className='navbar navbar-expand-lg navbar-light bg-dark navbar-shrink fixed-top'>
 				<div className='container'>
 					<Link className='navbar-brand text-warning' to='/'>
-						Pane e pasta colombiani
+						{isAdmin ? 'Panel de administrador' : 'Pane e pasta colombiani'}
 					</Link>
 					<div>
 						<button
@@ -110,7 +111,12 @@ const Header = () => {
 				</div>
 			</nav>
 			{toggleCart && <Cart></Cart>}
-			{toggleLogin && <Login> </Login>}
+			{toggleLogin &&
+				<Modal isOpen={setToggleLogin} title={`ingresa como administrador`}>
+					<div className="modal-content">
+						<Login isOpen={setToggleLogin} />
+					</div>
+				</Modal>}
 		</>
 	);
 };

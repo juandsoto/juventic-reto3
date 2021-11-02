@@ -30,7 +30,7 @@ const Services = () => {
 					</div>
 					<div className="row">
 						{loading ? <h1>Loading...</h1> :
-							services.map((service) => <Service key={service.id} {...service}>
+							services.map((service) => <Service key={service.id} service={service}>
 							</Service>)}
 					</div>
 				</div>

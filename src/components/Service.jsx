@@ -18,8 +18,8 @@ const Service = ({ service }) => {
 	const [state, setState] = useState(service);
 
 	const updateService = (service) => {
+		setState(service);
 		axios.patch(`${URL}/services/${service.id}`, service)
-			.then(({ data }) => setState(data))
 			.catch(console.log);
 	};
 

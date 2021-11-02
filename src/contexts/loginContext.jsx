@@ -4,7 +4,7 @@ const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
 
-	const [isAdmin, setIsAdmin] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(true);
 
 	return (
 		<LoginContext.Provider value={{

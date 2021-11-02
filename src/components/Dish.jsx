@@ -6,7 +6,6 @@ import Modal from './Modal';
 import Form from './Form';
 
 import axios from 'axios';
-
 import URL from '../server';
 
 const Dish = ({ dish }) => {
@@ -16,9 +15,9 @@ const Dish = ({ dish }) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [state, setState] = useState(dish);
 
-	const updateDish = (client) => {
-		axios.patch(`${URL}/menu/${client.id}`, client)
-			.then(({ data }) => setState(data))
+	const updateDish = (dish) => {
+		setState(dish);
+		axios.patch(`${URL}/menu/${dish.id}`, dish)
 			.catch(console.log);
 	};
 

@@ -14,8 +14,8 @@ const Client = ({ client }) => {
 	const [state, setState] = useState(client);
 
 	const updateClient = (client) => {
+		setState(client);
 		axios.patch(`${URL}/clients/${client.id}`, client)
-			.then(({ data }) => setState(data))
 			.catch(console.log);
 	};
 

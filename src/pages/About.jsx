@@ -20,10 +20,9 @@ const About = () => {
 		window.scrollTo({ top: true });
 	}, []);
 
-
 	return (
 		<>
-			<section className="page-section" id="about">
+			<section id="about">
 				<div className="container">
 					<div className="text-center">
 						<h2 className="section-heading text-uppercase mt-5">NOSOTROS</h2>

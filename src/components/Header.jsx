@@ -110,7 +110,12 @@ const Header = () => {
 					</button>
 				</div>
 			</nav>
-			{toggleCart && <Cart></Cart>}
+			{toggleCart &&
+				<Modal fullWidth={false} isOpen={setToggleCart} title={`carrito de compras`}>
+					<div className="modal-content">
+						<Cart></Cart>
+					</div>
+				</Modal>}
 			{toggleLogin &&
 				<Modal isOpen={setToggleLogin} title={`ingresa como administrador`}>
 					<div className="modal-content">

@@ -18,8 +18,8 @@ const Team = ({ person }) => {
 	const [state, setState] = useState(person);
 
 	const updatePerson = (person) => {
+		setState(person);
 		axios.patch(`${URL}/team/${person.id}`, person)
-			.then(({ data }) => setState(data))
 			.catch(console.log);
 	};
 

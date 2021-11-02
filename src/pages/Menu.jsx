@@ -3,9 +3,15 @@ import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import Dish from '../components/Dish';
 
+import { useLoginContext } from '../contexts/loginContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faFire, faHamburger } from '@fortawesome/free-solid-svg-icons';
 
+import Modal from '../components/Modal';
+import Form from '../components/Form';
+
+import axios from 'axios';
 import URL from '../server';
 
 const Menu = () => {
@@ -13,10 +19,19 @@ const Menu = () => {
 	const [loading, setLoading] = useState(true);
 	const [dishes, setDishes] = useState([]);
 
+	const { isAdmin } = useLoginContext();
+
+	const [isButtonOpen, setIsButtonOpen] = useState(false);
+
 	const fetchMenu = async () => {
 		const res = await fetch(`${URL}/menu`);
 		const menu = await res.json();
 		setDishes(menu);
+	};
+
+	const createDish = (dish) => {
+		axios.post(`${URL}/menu`, dish).then(console.log)
+			.catch(console.log);
 	};
 
 	useEffect(() => {
@@ -64,7 +79,19 @@ const Menu = () => {
 							})}
 					</div>
 				</div>
-			</div>		</>
+			</div>
+
+			{isAdmin && <button className="admin-create-btn btn btn-secondary" onClick={() => setIsButtonOpen(!isButtonOpen)}>Agregar nuevo plato</button>}
+
+			{isButtonOpen &&
+				<Modal isOpen={setIsButtonOpen} title={`Crea un nuevo plato`}>
+					<div className="modal-content">
+						<Form payload={{
+							name: '', description: '', price: 1, img: ''
+						}} action={createDish} isOpen={setIsButtonOpen}></Form>
+					</div>
+				</Modal>}
+		</>
 	);
 };
 

@@ -7,7 +7,7 @@ const Contact = () => {
 	}, []);
 	return (
 		<>
-			<section className='page-section bajarsection' id='contact'>
+			<section id='contact'>
 				<div className='container mt-5'>
 					<div className='text-center'>
 						<h2 className='section-heading text-uppercase'>Contactanos</h2>

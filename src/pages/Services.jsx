@@ -22,7 +22,7 @@ const Services = () => {
 
 	return (
 		<>
-			<section className="page-section bg-light" id="portfolio">
+			<section className="bg-light" id="portfolio">
 				<div className="container">
 					<div className="text-center">
 						<h2 className="section-heading text-uppercase mt-5">Servicios</h2>

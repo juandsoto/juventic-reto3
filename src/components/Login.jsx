@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
+import { useLoginContext } from '../contexts/loginContext';
 
 const Login = () => {
 
+	const { isAdmin, setIsAdmin } = useLoginContext();
+
 	const ADMIN = {
-		adminName: 'admin123456',
-		adminPassword: '123456'
+		adminName: 'admin',
+		adminPassword: 'admin'
 	};
 
 	const [form, setForm] = useState({
@@ -24,12 +28,16 @@ const Login = () => {
 		const { adminName, adminPassword } = ADMIN;
 
 		if (name === adminName && password === adminPassword) {
-			console.log('coincide');
+			setIsAdmin(true);
 		} else {
-			console.log('no es admin');
+			alert('No eres administrador!!!');
 		}
 
 	};
+
+	if (isAdmin) {
+		return <Redirect to='/' />;
+	}
 
 	return (
 		<div className='login p-2 text-light' >
@@ -44,17 +52,17 @@ const Login = () => {
 						name='name'
 						required
 						onChange={onInputChange}
-						placeholder="    Usuario" />
+						placeholder="   Usuario" />
 					<input
 						className='form-login-input'
 						type="password"
 						value={form.password}
 						name='password'
 						required
-						onChange={onInputChange} 
-						placeholder="    Contraseña"/>
+						onChange={onInputChange}
+						placeholder="   Contraseña" />
 				</div>
-				
+
 			</form>
 
 			<button className="btn-login" type="button" onClick={handleSubmit}>Ingresar</button>

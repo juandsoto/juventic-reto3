@@ -2,8 +2,13 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { useLoginContext } from '../contexts/loginContext';
 
 const Service = ({ id, name, description, img }) => {
+
+	const { isAdmin } = useLoginContext();
+
+
 	return (
 		<>
 			<div className="col-lg-4 col-sm-6">
@@ -17,6 +22,8 @@ const Service = ({ id, name, description, img }) => {
 					</a>
 					<div className="portfolio-caption">
 						<div className="portfolio-caption-heading">{name.toUpperCase()}</div>
+						{isAdmin && <button className="mt-2 mx-auto w-100 d-block btn btn-secondary">editar</button>}
+
 					</div>
 				</div>
 			</div>

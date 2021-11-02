@@ -1,10 +1,13 @@
 import React from 'react';
 import { useCartContext } from '../contexts/cartContext';
+import { useLoginContext } from '../contexts/loginContext';
 const Dish = ({ dish }) => {
 
 	const { name, description, price, img } = dish;
 
 	const { addToCart } = useCartContext();
+
+	const { isAdmin } = useLoginContext();
 
 	return (
 		<>
@@ -16,6 +19,7 @@ const Dish = ({ dish }) => {
 						<p className="card-text">{description}</p>
 						<h5>${price}</h5>
 						<button onClick={() => addToCart(dish)} className="btn btn-primary w-100 text-black">Agregar al carrito</button>
+						{isAdmin && <button className="mt-2 mx-auto w-100 d-block btn btn-secondary">editar</button>}
 					</div>
 				</div>
 			</div>

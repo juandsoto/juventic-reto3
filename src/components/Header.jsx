@@ -7,6 +7,7 @@ import Cart from '../components/Cart';
 import Login from '../components/Login';
 
 import { useCartContext } from '../contexts/cartContext';
+import { useLoginContext } from '../contexts/loginContext';
 
 const Header = () => {
 
@@ -14,6 +15,7 @@ const Header = () => {
 	const [toggleLogin, setToggleLogin] = useState(false);
 
 	const { quantity } = useCartContext();
+	const { isAdmin, setIsAdmin } = useLoginContext();
 
 	return (
 		<>
@@ -85,9 +87,14 @@ const Header = () => {
 						</div>
 					</div>
 					<div className='nav-item ml-5'>
-						<button type="button" className="btn btn-primary" onClick={() => setToggleLogin(!toggleLogin)}>
-							Login
-						</button>
+						{isAdmin ?
+							<button type="button" className="btn btn-primary" onClick={() => setIsAdmin(false)}>
+								Logout
+							</button> :
+							<button type="button" className="btn btn-primary" onClick={() => setToggleLogin(!toggleLogin)}>
+								Login
+							</button>
+						}
 					</div>
 					<button
 						className='d-flex mx-2 btn btn-outline-warning align-items-center'

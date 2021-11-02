@@ -94,7 +94,7 @@ const About = () => {
 						<h3 className="section-subheading text-muted">PANE E PASTA COLOMBIANI</h3>
 					</div>
 					<div className="row">
-						{team.map((person, index) => {
+						{team.map((person) => {
 							return <Team key={person.id} {...person} >
 
 							</Team>;

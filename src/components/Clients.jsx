@@ -28,9 +28,8 @@ const Clients = () => {
 					<h4 className="section-subheading text-muted mb-5">PANE E PASTA COLOMBIANI</h4>
 				</div>
 				<div className="row">
-					{loading ? <h1>Loading...</h1> : clients.map((client, index) => {
-						return <Client key={client.id} {...client}>
-						</Client>;
+					{loading ? <h1>Loading...</h1> : clients.map((client) => {
+						return <Client key={client.id} client={client} />;
 					})}
 				</div>
 			</div>

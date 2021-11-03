@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = ({ payload, isOpen, action }) => {
+const Form = ({ payload, isOpen, action, text = 'actualizar' }) => {
 
 	const [form, setForm] = useState(payload);
 
@@ -12,9 +12,12 @@ const Form = ({ payload, isOpen, action }) => {
 		});
 	};
 
-	const handleOnSubmit = (e) => {
+	const handleOnSubmit = async (e) => {
 		e.preventDefault();
-		action(form);
+		if (!form.img)
+			action({ ...form, img: 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png' });
+		else
+			action(form);
 		isOpen(false);
 	};
 
@@ -29,8 +32,7 @@ const Form = ({ payload, isOpen, action }) => {
 						autoFocus
 						name='name'
 						required
-						onChange={onChange}
-						placeholder="Nombre" />
+						onChange={onChange} />
 					<label htmlFor="floatingInputValue">Nombre</label>
 				</div>
 				<div className="form-floating">
@@ -41,7 +43,6 @@ const Form = ({ payload, isOpen, action }) => {
 						name='description'
 						required
 						onChange={onChange}
-						placeholder="Descripción"
 						style={{ minHeight: '100px' }} />
 					<label htmlFor="floatingInputValue">Descripción</label>
 				</div>
@@ -51,9 +52,7 @@ const Form = ({ payload, isOpen, action }) => {
 						type="text"
 						value={form.img}
 						name='img'
-						required
-						onChange={onChange}
-						placeholder="Imagén" />
+						onChange={onChange} />
 					<label htmlFor="floatingInputValue">Imágen</label>
 				</div>
 
@@ -69,7 +68,7 @@ const Form = ({ payload, isOpen, action }) => {
 				</div>}
 
 				<div className='modal-submitbtn'>
-					<button type="submit" className='btn btn-primary text-black'>Actualizar</button>
+					<button type="submit" className='btn btn-primary text-black'>{text}</button>
 				</div>
 			</form>
 		</>

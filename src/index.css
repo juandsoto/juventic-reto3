@@ -170,4 +170,7 @@ p, input, textarea{
 		width: 100px;
 		height: 75px;
 }
+.cart {
+	max-height: 300px;
+}
 }

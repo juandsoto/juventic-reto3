@@ -88,7 +88,7 @@ const Menu = () => {
 					<div className="modal-content">
 						<Form payload={{
 							name: '', description: '', price: 1, img: ''
-						}} action={createDish} isOpen={setIsButtonOpen}></Form>
+						}} text={'crear'} action={createDish} isOpen={setIsButtonOpen}></Form>
 					</div>
 				</Modal>}
 		</>

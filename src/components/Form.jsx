@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useCartContext } from '../contexts/cartContext';
 
-const Form = ({ payload, isOpen, action, text = 'actualizar' }) => {
+const Form = ({ payload, isOpen, action, text = 'actualizar', type }) => {
+
+	const { cart, total, quantity } = useCartContext();
 
 	const [form, setForm] = useState(payload);
 
@@ -20,6 +23,74 @@ const Form = ({ payload, isOpen, action, text = 'actualizar' }) => {
 			action(form);
 		isOpen(false);
 	};
+
+	if (type === 'cart') {
+
+		return (
+			<>
+				<form autoComplete='off' action="https://formspree.io/f/xbjqbgko" method="POST">
+					<input type="hidden" name="_language" value="es" />
+					<input
+						type="hidden"
+						name="_subject"
+						value="Pane e pasta Colombiani"
+					/>
+					<div className="form-floating">
+						<input
+							className='form-control'
+							type="text"
+							value={form.name}
+							autoFocus
+							name='name'
+							required
+							onChange={onChange} />
+						<label htmlFor="floatingInputValue">Nombre</label>
+					</div>
+					<div className="form-floating">
+						<input
+							className='form-control'
+							type="email"
+							value={form.email}
+							autoFocus
+							name='email'
+							required
+							onChange={onChange} />
+						<label htmlFor="floatingInputValue">Email</label>
+					</div>
+					<div className='form-check'>
+						<input
+							className='form-check-input'
+							type='checkbox'
+							value=''
+							id='flexCheckDefault'
+							required
+						/>
+						<label
+							className='form-check-label'
+							htmlFor='flexCheckDefault'
+						>
+							Al hacer clic en "Enviar", aceptas nuestras Condiciones,
+							la Política de datos y la Política de cookies.Es posible
+							que te enviemos notificaciones por SMS, que puedes
+							desactivar cuando quieras.
+						</label>
+					</div>
+					<div className='modal-submitbtn'>
+						<button type="submit" className='btn btn-primary text-black'>{text}</button>
+					</div>
+
+					{cart.map((dish, index) => {
+						return (
+							<input key={index} type='hidden' name={dish.name} value={`$${dish.price} * ${dish.qty} = $${dish.price * dish.qty}`} />
+						);
+					})}
+
+					<input type="hidden" name='Cantidad total' value={`${quantity} platos`} />
+					<input type="hidden" name='Total' value={`$${total}`} />
+				</form>
+			</>
+		);
+	}
 
 	return (
 		<>

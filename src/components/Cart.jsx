@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCartContext } from '../contexts/cartContext';
 
-const Cart = () => {
+import Modal from './Modal';
+import Form from './Form';
+
+const Cart = ({ isOpen }) => {
 	const context = useCartContext();
+
+	const [showModal, setShowModal] = useState(false);
+
+	const sendEmail = () => {
+		setShowModal(!showModal);
+	};
 
 	if (context.cart.length === 0) {
 		return (
@@ -60,12 +69,21 @@ const Cart = () => {
 					onClick={() => context.clear()}
 					className='text-dark btn btn-danger me-4'
 				>
-					clear cart
+					Vaciar carrito
 				</button>
-				<button className='text-dark btn btn-warning ml-4'>
-					checkout
+				<button onClick={sendEmail} className='text-dark btn btn-warning ml-4'>
+					Enviar pedido
 				</button>
 			</div>
+
+			{showModal &&
+				<Modal isOpen={setShowModal} title={`Enviar pedido`}>
+					<div className="modal-content">
+						<Form type="cart" text={'Enviar'} payload={{
+							name: '', email: ''
+						}} isOpen={setShowModal}></Form>
+					</div>
+				</Modal>}
 		</>
 	);
 };

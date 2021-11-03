@@ -47,7 +47,7 @@ const Clients = () => {
 			</div>
 
 			{isButtonOpen &&
-				<Modal isOpen={setIsButtonOpen} title={`Dános tu opinión`}>
+				<Modal isOpen={setIsButtonOpen} title={`Danos tu opinión`}>
 					<div className="modal-content">
 						<Form payload={{
 							name: '', description: '', img: ''

@@ -113,7 +113,7 @@ const Header = () => {
 			{toggleCart &&
 				<Modal fullWidth={false} isOpen={setToggleCart} title={`carrito de compras`}>
 					<div className="modal-content">
-						<Cart></Cart>
+						<Cart isOpen={setToggleCart}></Cart>
 					</div>
 				</Modal>}
 			{toggleLogin &&

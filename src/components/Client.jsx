@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Client = ({ client }) => {
-	const [state, setState] = useState(client);
 
 	return (
 		<>
 			<div className="col-3">
 				<div className="team-member">
-					<img className="mx-auto rounded-circle" src={state.img} alt={state.name} />
-					<h4>{state.name.toUpperCase()}</h4>
-					<p className="text-muted">{state.description}</p>'
+					<img className="mx-auto rounded-circle" src={client.img} alt={client.name} />
+					<h4>{client.name.toUpperCase()}</h4>
+					<p className="text-muted">{client.description}</p>'
 				</div>
 			</div>
 		</>

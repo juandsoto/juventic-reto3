@@ -3,9 +3,7 @@ const reducer = (state, action) => {
     case 'CLEAR_CART':
       return { ...state, cart: [] };
     case 'ADD_TO_CART':
-      const alreadyInCart = state.cart.find(
-        (item) => item.id === action.payload.id
-      );
+      const alreadyInCart = state.cart.find((item) => item.id === action.payload.id);
       if (alreadyInCart) {
         const newCart = state.cart.map((item) => {
           if (item.id === action.payload.id) {

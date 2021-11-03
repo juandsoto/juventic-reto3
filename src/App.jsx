@@ -12,22 +12,22 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 const App = () => {
-	return (
-		<Router>
-			<Header></Header>
-			<div className='section'>
-				<Switch>
-					<Route exact path='/' component={Home} />
-					<Route exact path='/about' component={About} />
-					<Route exact path='/menu' component={Menu} />
-					<Route exact path='/services' component={Services} />
-					<Route exact path='/contact' component={Contact} />
-					<Route path='*' component={Error} />
-				</Switch>
-				<Footer></Footer>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <Header></Header>
+      <div className='section'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/menu' component={Menu} />
+          <Route exact path='/services' component={Services} />
+          <Route exact path='/contact' component={Contact} />
+          <Route path='*' component={Error} />
+        </Switch>
+        <Footer></Footer>
+      </div>
+    </Router>
+  );
 };
 
 export default App;

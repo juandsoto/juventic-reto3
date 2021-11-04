@@ -6,7 +6,6 @@ import Form from './Form';
 
 const Cart = () => {
   const context = useCartContext();
-
   const [showModal, setShowModal] = useState(false);
 
   const sendEmail = () => {
@@ -33,7 +32,7 @@ const Cart = () => {
           <div key={item.id} className='cart-item'>
             <img className='cart-img' src={item.img} alt={item.name} />
             <div>
-              <p>{item.name}</p>
+              <p>{item.name.toUpperCase()}</p>
               <p>${item.price}</p>
             </div>
             <div>

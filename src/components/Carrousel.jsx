@@ -2,7 +2,7 @@ import React from 'react';
 
 const Carrousel = () => {
   return (
-    <div id='carouselExampleIndicators' className='carousel slide' data-bs-ride='carousel'>
+    <div id='carouselExampleIndicators' className='carousel slider slide' data-bs-ride='carousel'>
       <div className='carousel-indicators'>
         <button
           type='button'

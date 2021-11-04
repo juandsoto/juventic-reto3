@@ -24,7 +24,7 @@ const Form = ({ payload, isOpen, action, text = 'actualizar', type }) => {
   if (type === 'cart') {
     return (
       <>
-        <form autoComplete='off' action='https://formspree.io/f/xbjqbgko' method='POST'>
+        <form security='off' autoComplete='off' action='https://formspree.io/f/xbjqbgko' method='POST'>
           <input type='hidden' name='_language' value='es' />
           <input type='hidden' name='_subject' value='Pane e pasta Colombiani' />
           <div className='form-floating'>

@@ -19,19 +19,38 @@ const Menu = () => {
   const [isButtonOpen, setIsButtonOpen] = useState(false);
 
   const fetchMenu = async () => {
+    console.log('fetching');
+    setLoading(true);
     const res = await fetch(`${URL}/menu`);
     const menu = await res.json();
     setDishes(menu);
+    setLoading(false);
+  };
+
+  const updateDish = (dish) => {
+    setDishes((prev) => {
+      const newDishes = prev.map((item) => (item.id === dish.id ? dish : item));
+      return newDishes;
+    });
+  };
+
+  const deleteDish = (dish) => {
+    setDishes((prev) => {
+      prev = prev.filter((item) => item.id !== dish.id);
+      return prev;
+    });
   };
 
   const createDish = (dish) => {
-    axios.post(`${URL}/menu`, dish).then(console.log).catch(console.log);
+    axios
+      .post(`${URL}/menu`, dish)
+      .then(({ data }) => setDishes([...dishes, data]))
+      .catch(console.log);
   };
 
   useEffect(() => {
-    fetchMenu();
-    setLoading(false);
     window.scrollTo({ top: true });
+    fetchMenu();
   }, []);
 
   return (
@@ -67,10 +86,14 @@ const Menu = () => {
         <div className='container'>
           <div className='row'>
             {loading ? (
-              <h1>Loading ...</h1>
+              <div className='d-flex justify-content-center'>
+                <div className='spinner-border' role='status'>
+                  <span className='visually-hidden'>Loading...</span>
+                </div>
+              </div>
             ) : (
               dishes.map((dish) => {
-                return <Dish key={dish.id} dish={dish}></Dish>;
+                return <Dish key={dish.id} dish={dish} updateDish={updateDish} deleteDish={deleteDish}></Dish>;
               })
             )}
           </div>

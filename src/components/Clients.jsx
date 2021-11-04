@@ -34,20 +34,24 @@ const Clients = () => {
           <h2 className='section-heading text-uppercase mt-5 mb-4'>OPINIONES/CLIENTES</h2>
           <h4 className='section-subheading text-muted mb-5'>PANE E PASTA COLOMBIANI</h4>
         </div>
-        <div className='row'>
-          {loading ? (
-            <h1>Loading...</h1>
-          ) : (
-            clients.slice(0, 8).map((client) => {
+        {loading ? (
+          <div className='d-flex justify-content-center'>
+            <div className='spinner-border' role='status'>
+              <span className='visually-hidden'>Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <div className='row'>
+            {clients.slice(0, 8).map((client) => {
               return <Client key={client.id} client={client} />;
-            })
-          )}
-        </div>
-        <div className='d-flex justify-content-center mb-4'>
-          <button className='btn btn-secondary' onClick={() => setIsButtonOpen(!isButtonOpen)}>
-            Dános tu propio testimonio!
-          </button>
-        </div>
+            })}
+            <div className='d-flex justify-content-center mb-4'>
+              <button className='btn btn-secondary' onClick={() => setIsButtonOpen(!isButtonOpen)}>
+                Dános tu propio testimonio!
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {isButtonOpen && (

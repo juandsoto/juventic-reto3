@@ -6,11 +6,13 @@ import URL from '../server';
 
 const About = () => {
   const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchTeam = async () => {
     const res = await fetch(`${URL}/team`);
     const team = await res.json();
     setTeam(team);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -114,11 +116,19 @@ const About = () => {
             <h2 className='section-heading text-uppercase'>NUESTRO EQUIPO</h2>
             <h3 className='section-subheading text-muted'>PANE E PASTA COLOMBIANI</h3>
           </div>
-          <div className='row'>
-            {team.map((person) => {
-              return <Team key={person.id} person={person}></Team>;
-            })}
-          </div>
+          {loading ? (
+            <div className='d-flex justify-content-center'>
+              <div className='spinner-border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <div className='row'>
+              {team.map((person) => {
+                return <Team key={person.id} person={person}></Team>;
+              })}
+            </div>
+          )}
         </div>
       </section>
       <Map></Map>

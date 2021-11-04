@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 import { useLoginContext } from '../contexts/loginContext';
 
+const ADMIN = {
+  adminName: 'admin',
+  adminPassword: 'admin',
+};
+
 const Login = ({ isOpen }) => {
   const { setIsAdmin } = useLoginContext();
 
-  const ADMIN = {
-    adminName: 'admin',
-    adminPassword: 'admin',
-  };
-
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: '',
     password: '',
@@ -30,7 +31,10 @@ const Login = ({ isOpen }) => {
       setIsAdmin(true);
       isOpen(false);
     } else {
-      alert('No eres administrador!!!');
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
     }
   };
 
@@ -45,6 +49,8 @@ const Login = ({ isOpen }) => {
           <input className='form-control' type='password' value={form.password} name='password' required onChange={handleChange} />
           <label htmlFor='floatingInputValue'>Contraseña</label>
         </div>
+
+        <div className='text-center text-danger'>{error && 'No eres admin'}</div>
 
         <div className='modal-submitbtn'>
           <button type='submit' className='btn btn-primary text-black'>

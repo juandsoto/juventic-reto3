@@ -103,7 +103,7 @@ textarea {
 .cart-img {
   height: 100px;
   width: 175px;
-  /* object-fit: cover; */
+  object-fit: cover;
 }
 
 .cart::-webkit-scrollbar {
@@ -159,6 +159,9 @@ textarea {
 }
 
 @media screen and (max-width: 500px) {
+  * {
+  }
+
   .navbar-brand {
     font-size: 0.75rem;
   }

@@ -11,12 +11,12 @@ const Services = () => {
     const res = await fetch(`${URL}/services`);
     const services = await res.json();
     setServices(services);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchServices();
-    setLoading(false);
     window.scrollTo({ top: true });
+    fetchServices();
   }, []);
 
   return (
@@ -27,7 +27,19 @@ const Services = () => {
             <h2 className='section-heading text-uppercase mt-5'>Servicios</h2>
             <h3 className='section-subheading text-muted'>¡Todo para tus celebraciones! </h3>
           </div>
-          <div className='row'>{loading ? <h1>Loading...</h1> : services.map((service) => <Service key={service.id} service={service}></Service>)}</div>
+          {loading ? (
+            <div className='d-flex justify-content-center'>
+              <div className='spinner-border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <div className='row'>
+              {services.map((service) => (
+                <Service key={service.id} service={service}></Service>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>

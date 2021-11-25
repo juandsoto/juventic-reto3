@@ -172,42 +172,44 @@ const Header = () => {
             {!reservas.length ? (
               <p className='text-danger h2'>No tienes reservas</p>
             ) : (
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Reserva</th>
-                    <th scope='col'>Cliente</th>
-                    <th scope='col'>Fecha</th>
-                    <th scope='col'>Estado</th>
-                    <th scope='col'>{isAdmin ? 'Terminar' : 'Cancelar'}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reservas.map((reserva, index) => {
-                    return (
-                      <tr key={index}>
-                        <th scope='row'>{index + 1}</th>
-                        <td>{reserva.servicio.name.toUpperCase()}</td>
-                        <td>{reserva.cliente.name}</td>
-                        <td>{moment.utc(reserva.date).format('DD-MM-YYYY hh:mm A')}</td>
-                        <td>{reserva.state}</td>
-                        <td>
-                          {isAdmin ? (
-                            <button disabled={reserva.state !== 'en espera'} className='btn btn-success' onClick={() => completarReserva(reserva.id)}>
-                              Realizado
-                            </button>
-                          ) : (
-                            <button disabled={reserva.state !== 'en espera'} className='btn btn-danger' onClick={() => cancelarReserva(reserva.id)}>
-                              Cancelar
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div class='table-responsive'>
+                <table className='table'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>#</th>
+                      <th scope='col'>Reserva</th>
+                      <th scope='col'>Cliente</th>
+                      <th scope='col'>Fecha</th>
+                      <th scope='col'>Estado</th>
+                      <th scope='col'>{isAdmin ? 'Terminar' : 'Cancelar'}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {reservas.map((reserva, index) => {
+                      return (
+                        <tr key={index}>
+                          <th scope='row'>{index + 1}</th>
+                          <td>{reserva.servicio.name.toUpperCase()}</td>
+                          <td>{reserva.cliente.name}</td>
+                          <td>{moment.utc(reserva.date).format('DD-MM-YYYY hh:mm A')}</td>
+                          <td>{reserva.state}</td>
+                          <td>
+                            {isAdmin ? (
+                              <button disabled={reserva.state !== 'en espera'} className='btn btn-success' onClick={() => completarReserva(reserva.id)}>
+                                Realizado
+                              </button>
+                            ) : (
+                              <button disabled={reserva.state !== 'en espera'} className='btn btn-danger' onClick={() => cancelarReserva(reserva.id)}>
+                                Cancelar
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </Modal>

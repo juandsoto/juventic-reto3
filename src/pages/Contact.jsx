@@ -1,6 +1,61 @@
-import React, { useEffect } from 'react';
-
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLoginContext } from '../contexts/loginContext';
+import URL from '../server';
 const Contact = () => {
+  const [form, setForm] = useState({ reservaciones: 1 });
+
+  const { client } = useLoginContext();
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    if (name === 'reservaciones') {
+      let id = '1';
+      switch (value) {
+        case 'Cena de amigos':
+          id = 1;
+          break;
+        case 'Declaraciones':
+          id = 2;
+          break;
+        case 'Despedida':
+          id = 3;
+          break;
+        case 'Fiesta infantil':
+          id = 4;
+          break;
+        case 'Cumpleaños':
+          id = 5;
+          break;
+        case 'Fiesta de grados':
+          id = 6;
+          break;
+        default:
+          break;
+      }
+      setForm({
+        ...form,
+        [name]: id
+      });
+    } else {
+      setForm({
+        ...form,
+        [name]: value
+      });
+    }
+  };
+
+  const handleOnSubmit = async e => {
+    if (!client.id) {
+      alert('DEBES INGRESAR');
+      return;
+    }
+    axios
+      .post(`${URL}/reserva`, { servicio_id: form.reservaciones, date: form.fecha, cliente_id: client.id, restaurante_id: 1 })
+      .then(({ data }) => console.log(data))
+      .catch(error => console.log(error));
+  };
+
   useEffect(() => {
     window.scrollTo({ top: true });
   }, []);
@@ -53,13 +108,13 @@ const Contact = () => {
                       style={{
                         padding: '10px',
                         width: '100%',
-                        marginBottom: '10px',
+                        marginBottom: '10px'
                       }}
+                      onChange={onChange}
                       required
                     >
-                      <option value='ninguno'>RESERVAS</option>
                       <option value='Cena de amigos'>Cena de amigos</option>
-                      <option value='Declaracioes'>Declaracioes</option>
+                      <option value='Declaraciones'>Declaraciones</option>
                       <option value='Despedida'>Despedida</option>
                       <option value='Fiesta infantil'>Fiesta infantil</option>
                       <option value='Cumpleaños'>Cumpleaños</option>
@@ -67,19 +122,11 @@ const Contact = () => {
                     </select>
                   </div>
                   <div className='form-group'>
-                    <input
-                      name='asistentes'
-                      type='text'
-                      className='form-control'
-                      id='floatingInput'
-                      required
-                      pattern='[0-9]*'
-                      placeholder='Numero de asistentes'
-                    />
+                    <input name='asistentes' type='text' className='form-control' id='floatingInput' required pattern='[0-9]*' placeholder='Numero de asistentes' />
                   </div>
 
                   <div className='form-group'>
-                    <input name='fecha' type='datetime-local' className='form-control' id='floatingInput' required placeholder='Fecha y hora' />
+                    <input name='fecha' onChange={onChange} type='datetime-local' className='form-control' id='floatingInput' required placeholder='Fecha y hora' />
                   </div>
                   <div className='form-group'>
                     <textarea
@@ -95,11 +142,11 @@ const Contact = () => {
                   <div className='form-check'>
                     <input className='form-check-input' type='checkbox' value='' id='flexCheckDefault' required />
                     <label className='text-light form-check-label' htmlFor='flexCheckDefault'>
-                      Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies.Es posible que te enviemos
-                      notificaciones por SMS, que puedes desactivar cuando quieras.
+                      Al hacer clic en "Enviar", aceptas nuestras Condiciones, la Política de datos y la Política de cookies.Es posible que te enviemos notificaciones por
+                      SMS, que puedes desactivar cuando quieras.
                     </label>
                   </div>
-                  <button type='submit' className='btn btn-primary mb-4' style={{ padding: '10px', width: '100%' }}>
+                  <button type='submit' onClick={handleOnSubmit} className='btn btn-primary mb-4' style={{ padding: '10px', width: '100%' }}>
                     Enviar Correo
                   </button>
                 </div>

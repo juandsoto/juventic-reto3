@@ -47,6 +47,10 @@ textarea {
   padding: 20px;
 }
 
+.modal-large {
+  width: 1000px;
+}
+
 .modal-header {
   display: flex;
   align-items: center;
@@ -159,9 +163,6 @@ textarea {
 }
 
 @media screen and (max-width: 500px) {
-  * {
-  }
-
   .navbar-brand {
     font-size: 0.75rem;
   }

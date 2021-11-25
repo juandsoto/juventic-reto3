@@ -12,14 +12,15 @@ import Modal from '../components/Modal';
 import URL from '../server';
 
 const Menu = () => {
-  const { isAdmin } = useLoginContext();
+  const {
+    client: { isAdmin }
+  } = useLoginContext();
 
   const [loading, setLoading] = useState(true);
   const [dishes, setDishes] = useState([]);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
 
   const fetchMenu = async () => {
-    console.log('fetching');
     setLoading(true);
     const res = await fetch(`${URL}/menu`);
     const menu = await res.json();
@@ -27,24 +28,24 @@ const Menu = () => {
     setLoading(false);
   };
 
-  const updateDish = (dish) => {
-    setDishes((prev) => {
-      const newDishes = prev.map((item) => (item.id === dish.id ? dish : item));
-      return newDishes;
-    });
-  };
-
-  const deleteDish = (dish) => {
-    setDishes((prev) => {
-      prev = prev.filter((item) => item.id !== dish.id);
-      return prev;
-    });
-  };
-
-  const createDish = (dish) => {
+  const createDish = dish => {
     axios
       .post(`${URL}/menu`, dish)
       .then(({ data }) => setDishes([...dishes, data]))
+      .catch(console.log);
+  };
+
+  const updateDish = dish => {
+    axios
+      .patch(`${URL}/menu/${dish.id}`, dish)
+      .then(({ data }) => setDishes(prev => prev.map(dish => (dish.id === data.id ? data : dish))))
+      .catch(console.log);
+  };
+
+  const deleteDish = dish => {
+    axios
+      .delete(`${URL}/menu/${dish.id}`)
+      .then(({ data }) => setDishes(dishes.filter(d => d.id !== dish.id)))
       .catch(console.log);
   };
 
@@ -92,7 +93,7 @@ const Menu = () => {
                 </div>
               </div>
             ) : (
-              dishes.map((dish) => {
+              dishes.map(dish => {
                 return <Dish key={dish.id} dish={dish} updateDish={updateDish} deleteDish={deleteDish}></Dish>;
               })
             )}
@@ -114,7 +115,7 @@ const Menu = () => {
                 name: '',
                 description: '',
                 price: 1,
-                img: '',
+                img: ''
               }}
               text={'crear'}
               action={createDish}

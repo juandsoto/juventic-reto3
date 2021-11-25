@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 import { useLoginContext } from '../contexts/loginContext';
 import URL from '../server';
 
-const Login = ({ isOpen }) => {
+const Register = ({ isOpen }) => {
   const { setClient } = useLoginContext();
 
   const [form, setForm] = useState({
     name: '',
+    username: '',
+    description: '',
     password: ''
   });
 
@@ -20,11 +22,12 @@ const Login = ({ isOpen }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const { name, password } = form;
-    axios.post(`${URL}/auth/login`, { username: name, password }).then(({ data }) => {
-      setClient(data);
-      localStorage.setItem('token', data.token);
-      isOpen(false);
+    axios.post(`${URL}/auth/register`, form).then(() => {
+      axios.post(`${URL}/auth/login`, form).then(({ data }) => {
+        setClient(data);
+        localStorage.setItem('token', data.token);
+        isOpen(false);
+      });
     });
   };
 
@@ -33,7 +36,15 @@ const Login = ({ isOpen }) => {
       <form className='w-100' autoComplete='off' onSubmit={handleSubmit}>
         <div className='form-floating'>
           <input className='form-control' type='text' value={form.name} name='name' autoFocus required onChange={handleChange} />
+          <label htmlFor='floatingInputValue'>Nombre</label>
+        </div>
+        <div className='form-floating'>
+          <input className='form-control' type='text' value={form.username} name='username' required onChange={handleChange} />
           <label htmlFor='floatingInputValue'>Nombre de Usuario</label>
+        </div>
+        <div className='form-floating'>
+          <input className='form-control' type='text' value={form.description} name='description' required onChange={handleChange} />
+          <label htmlFor='floatingInputValue'>Descripción</label>
         </div>
         <div className='form-floating'>
           <input className='form-control' type='password' value={form.password} name='password' required onChange={handleChange} />
@@ -50,4 +61,4 @@ const Login = ({ isOpen }) => {
   );
 };
 
-export default Login;
+export default Register;

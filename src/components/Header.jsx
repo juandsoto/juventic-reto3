@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import moment from 'moment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -9,20 +11,57 @@ import { useLoginContext } from '../contexts/loginContext';
 import Cart from '../components/Cart';
 import Login from '../components/Login';
 import Modal from './Modal';
+import Register from './Register';
+import URL from '../server';
 
 const Header = () => {
   const { quantity } = useCartContext();
-  const { isAdmin, setIsAdmin } = useLoginContext();
+  const {
+    client,
+    client: { isAdmin },
+    setClient
+  } = useLoginContext();
 
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleLogin, setToggleLogin] = useState(false);
+  const [toggleRegister, setToggleRegister] = useState(false);
+  const [toggleReservas, setToggleReservas] = useState(false);
+  const [reservas, setReservas] = useState([]);
+
+  const fetchAllReservas = () => {
+    axios
+      .get(`${URL}/reserva`)
+      .then(({ data }) => {
+        setReservas(data);
+      })
+      .then(() => setToggleReservas(!toggleReservas));
+  };
+
+  const fetchReservas = () => {
+    axios
+      .get(`${URL}/reserva/${client.id}`)
+      .then(({ data }) => {
+        setReservas(data);
+      })
+      .then(() => setToggleReservas(!toggleReservas));
+  };
+
+  const completarReserva = id => {
+    setReservas(reservas.map(reserva => (reserva.id === id ? { ...reserva, state: 'realizado' } : reserva)));
+    axios.patch(`${URL}/reserva/${id}`);
+  };
+
+  const cancelarReserva = id => {
+    setReservas(reservas.map(reserva => (reserva.id === id ? { ...reserva, state: 'cancelado' } : reserva)));
+    axios.delete(`${URL}/reserva/${id}`);
+  };
 
   return (
     <>
       <nav className='navbar navbar-expand-lg navbar-light bg-dark navbar-shrink fixed-top'>
         <div className='container'>
           <Link className='navbar-brand text-warning' to='/'>
-            {isAdmin ? 'Panel de administrador' : 'Pane e pasta colombiani'}
+            {isAdmin ? 'Panel de administrador' : client.id ? client.username : 'Pane e pasta colombiani'}
           </Link>
           <div>
             <button
@@ -67,21 +106,37 @@ const Header = () => {
                 </li>
                 <li className='nav-item' data-bs-dismiss='offcanvas'>
                   <Link className='nav-link' to='/contact'>
-                    <p className='stroke text-light'>Contáctanos</p>
+                    <p className='stroke text-light'>Reservar</p>
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className='nav-item ml-5'>
-            {isAdmin ? (
-              <button type='button' className='btn btn-primary' onClick={() => setIsAdmin(false)}>
-                Logout
-              </button>
+            {client.id ? (
+              <>
+                <button type='button' className='btn btn-primary' onClick={() => setClient({})}>
+                  Logout
+                </button>
+                <button
+                  type='button'
+                  className='btn btn-success'
+                  onClick={() => {
+                    isAdmin ? fetchAllReservas() : fetchReservas();
+                  }}
+                >
+                  {isAdmin ? 'Reservas' : 'Mis reservas'}
+                </button>
+              </>
             ) : (
-              <button type='button' className='btn btn-primary' onClick={() => setToggleLogin(!toggleLogin)}>
-                Login
-              </button>
+              <>
+                <button type='button' className='btn btn-primary' onClick={() => setToggleLogin(!toggleLogin)}>
+                  Login
+                </button>
+                <button type='button' className='btn btn-secondary' onClick={() => setToggleRegister(!toggleRegister)}>
+                  Registrate
+                </button>
+              </>
             )}
           </div>
           <button className='d-flex mx-2 btn btn-outline-warning align-items-center' onClick={() => setToggleCart(!toggleCart)}>
@@ -98,9 +153,62 @@ const Header = () => {
         </Modal>
       )}
       {toggleLogin && (
-        <Modal isOpen={setToggleLogin} title={`ingresa como administrador`}>
+        <Modal isOpen={setToggleLogin} title={`Ingresa`}>
           <div className='modal-content'>
             <Login isOpen={setToggleLogin} />
+          </div>
+        </Modal>
+      )}
+      {toggleRegister && (
+        <Modal isOpen={setToggleRegister} title={`Registrate`}>
+          <div className='modal-content'>
+            <Register isOpen={setToggleRegister} />
+          </div>
+        </Modal>
+      )}
+      {toggleReservas && (
+        <Modal isLarge={true} isOpen={setToggleReservas} title={`Tus reservas`}>
+          <div className='modal-content'>
+            {!reservas.length ? (
+              <p className='text-danger h2'>No tienes reservas</p>
+            ) : (
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Reserva</th>
+                    <th scope='col'>Cliente</th>
+                    <th scope='col'>Fecha</th>
+                    <th scope='col'>Estado</th>
+                    <th scope='col'>{isAdmin ? 'Terminar' : 'Cancelar'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reservas.map((reserva, index) => {
+                    return (
+                      <tr key={index}>
+                        <th scope='row'>{index + 1}</th>
+                        <td>{reserva.servicio.name.toUpperCase()}</td>
+                        <td>{reserva.cliente.name}</td>
+                        <td>{moment.utc(reserva.date).format('DD-MM-YYYY hh:mm A')}</td>
+                        <td>{reserva.state}</td>
+                        <td>
+                          {isAdmin ? (
+                            <button disabled={reserva.state !== 'en espera'} className='btn btn-success' onClick={() => completarReserva(reserva.id)}>
+                              Realizado
+                            </button>
+                          ) : (
+                            <button disabled={reserva.state !== 'en espera'} className='btn btn-danger' onClick={() => cancelarReserva(reserva.id)}>
+                              Cancelar
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
           </div>
         </Modal>
       )}

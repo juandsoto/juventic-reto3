@@ -1,15 +1,29 @@
-import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import jwt from 'jsonwebtoken';
+
+import URL from '../server';
 
 const LoginContext = createContext();
 
 const LoginProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [client, setClient] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwt.decode(token);
+      axios.post(`${URL}/auth/login`, { username: decodedToken.username, password: decodedToken.password }).then(({ data }) => {
+        setClient(data);
+      });
+    }
+  }, []);
 
   return (
     <LoginContext.Provider
       value={{
-        isAdmin,
-        setIsAdmin,
+        client,
+        setClient
       }}
     >
       {children}

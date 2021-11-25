@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
@@ -7,43 +6,43 @@ import { faPlus, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useLoginContext } from '../contexts/loginContext';
 import Modal from './Modal';
 import Form from './Form';
-import URL from '../server';
 
-const Service = ({ service }) => {
-  const { isAdmin } = useLoginContext();
+const Service = ({ service, updateService, deletePerson }) => {
+  const {
+    client: { isAdmin }
+  } = useLoginContext();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [state, setState] = useState(service);
-
-  const updateService = (service) => {
-    setState(service);
-    axios.patch(`${URL}/services/${service.id}`, service).catch(console.log);
-  };
 
   return (
     <>
       <div className='col-lg-4 col-sm-6'>
         <div className='portfolio-item'>
-          <a className='portfolio-link' data-bs-toggle='modal' href={`#portafolioModal${state.id}`}>
+          <a className='portfolio-link' data-bs-toggle='modal' href={`#portafolioModal${service.id}`}>
             <div className='portfolio-hover'>
               <div className='portfolio-hover-content'>
                 <FontAwesomeIcon icon={faPlus} size='3x'></FontAwesomeIcon>
               </div>
             </div>
-            <img className='img-fluid h-50' src={state.img} alt='...' />
+            <img className='img-fluid h-50' src={service.img} alt='...' />
           </a>
           <div className='portfolio-caption'>
-            <div className='portfolio-caption-heading'>{state.name.toUpperCase()}</div>
+            <div className='portfolio-caption-heading'>{service.name.toUpperCase()}</div>
             {isAdmin && (
-              <button className='mt-2 mx-auto w-100 d-block btn btn-secondary' onClick={() => setIsEditing(!isEditing)}>
-                editar
-              </button>
+              <>
+                <button className='mt-2 mx-auto w-100 d-block btn btn-secondary' onClick={() => setIsEditing(!isEditing)}>
+                  editar
+                </button>
+                <button className='mt-2 mx-auto w-100 d-block btn btn-danger' onClick={() => deletePerson(service)}>
+                  eliminar
+                </button>
+              </>
             )}
           </div>
         </div>
       </div>
 
-      <div className='portfolio-modal modal fade' id={`portafolioModal${state.id}`} tabIndex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id={`portafolioModal${service.id}`} tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'>
@@ -53,10 +52,10 @@ const Service = ({ service }) => {
               <div className='row justify-content-center'>
                 <div className='col-lg-8'>
                   <div className='modal-body'>
-                    <h2>{state.name.toUpperCase()}</h2>
-                    <img className='img-fluid h-50' src={state.img} alt='...' />
+                    <h2>{service.name.toUpperCase()}</h2>
+                    <img className='img-fluid h-50' src={service.img} alt='...' />
 
-                    <p>{state.description}</p>
+                    <p>{service.description}</p>
 
                     <button className='btn btn-primary btn-xl text-uppercase' data-bs-dismiss='modal' type='button'>
                       <i className='fas fa-times me-1'></i>
@@ -71,9 +70,9 @@ const Service = ({ service }) => {
       </div>
 
       {isEditing && (
-        <Modal isOpen={setIsEditing} title={`editando ${state.name}`}>
+        <Modal isOpen={setIsEditing} title={`editando ${service.name}`}>
           <div className='modal-content'>
-            <Form payload={state} action={updateService} isOpen={setIsEditing}></Form>
+            <Form payload={service} action={updateService} isOpen={setIsEditing}></Form>
           </div>
         </Modal>
       )}
